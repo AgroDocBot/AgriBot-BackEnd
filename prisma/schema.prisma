@@ -14,8 +14,53 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  username String   @unique
-  password String
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
   createdAt DateTime @default(now())
+  fields    CropField[] 
+}
+
+model CropField {
+  id        Int      @id @default(autoincrement())
+  fieldname String
+  crop      String
+  latitude  Decimal   
+  longitude Decimal
+  createdAt DateTime @default(now())
+  author    User @relation(fields: [ownerId], references: [id])
+  ownerId Int
+  measurements Measurement[]
+
+  @@unique([ownerId, fieldname])
+}
+
+model Measurement {
+  id        Int       @id @default(autoincrement())
+  duration  Float
+  explored  Float
+  createdAt DateTime @default(now())
+  field     CropField @relation(fields: [fieldId], references: [id])
+  fieldId   Int
+  healthyPlants HealthyPlant[]
+  diseasedPlants DiseasedPlant[]
+}
+
+model HealthyPlant {
+  id        Int       @id @default(autoincrement())
+  latitude  Decimal   
+  longitude Decimal
+  crop      String
+  measurement  Measurement @relation(fields: [measurementId], references: [id])
+  measurementId Int
+}
+
+model DiseasedPlant {
+  id        Int     @id @default(autoincrement())
+  latitude  Decimal
+  longitude Decimal
+  crop      String
+  disease   String
+  measurement Measurement @relation(fields: [measurementId], references: [id])
+  measurementId Int
 }
