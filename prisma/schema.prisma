@@ -37,8 +37,8 @@ model CropField {
 
 model Measurement {
   id        Int       @id @default(autoincrement())
-  duration  Float
-  explored  Float
+  duration  Float     @default(0)
+  explored  Float     @default(0)
   createdAt DateTime @default(now())
   field     CropField @relation(fields: [fieldId], references: [id])
   fieldId   Int
