@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Put, Delete, Get } from '@nestjs/common';
+import { Controller, Post, Body, Put, Delete, Get, Param } from '@nestjs/common';
 import { FieldsService } from './fields.service';
 import { Decimal } from '@prisma/client/runtime/library';
 
@@ -11,14 +11,14 @@ export class FieldsController {
     return this.fieldsService.create(body.fieldname, body.crop, body.latitude, body.longitude, body.userId)
   }
 
-  @Get('getfields')
-  async getfields(@Body() body: {userId : number}) {
-    return this.fieldsService.getfield(body.userId)
+  @Get('getfields/:userId')
+  async getfields(@Param('userId')  userId : number) {
+    return this.fieldsService.getfield(userId)
   }
 
   @Put('edit')
   async edit(@Body() body: { fieldname: string; crop: string; latitude: Decimal; longitude: Decimal; userId: number }) {
-    return this.fieldsService.edit(body.fieldname, body.crop, body.latitude, body.longitude, body.userId)
+    return await this.fieldsService.edit(body.fieldname, body.crop, body.latitude, body.longitude, body.userId)
   }
 
   @Delete('delete')

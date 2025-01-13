@@ -14,7 +14,7 @@ export class FieldsService {
         crop : crop,
         latitude : latitude,
         longitude : longitude,
-        ownerId : userId
+        ownerId : Number(userId)
       }
     })
   }
@@ -23,7 +23,7 @@ export class FieldsService {
     return await this.prisma.cropField.update({
       where: {
         ownerId_fieldname : {
-          ownerId : userId,
+          ownerId : Number(userId),
           fieldname : fieldname
         }
       },
@@ -40,7 +40,7 @@ export class FieldsService {
     return await this.prisma.cropField.delete({
       where : {
         ownerId_fieldname : {
-          ownerId : userId,
+          ownerId : Number(userId),
           fieldname
         }
       }
@@ -50,7 +50,7 @@ export class FieldsService {
   async getfield(userId : number) {
     return await this.prisma.cropField.findMany({
       where : {
-        ownerId : userId
+        ownerId : Number(userId)
       }
     })
   }

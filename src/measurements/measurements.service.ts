@@ -18,7 +18,7 @@ export class MeasurementsService {
     async edit(duration: number, explored: number, measurementId: number) {
         return await this.prisma.measurement.update({
             where: {
-                id : measurementId
+                id : Number(measurementId)
             },
             data : {
                 duration,
@@ -45,7 +45,7 @@ export class MeasurementsService {
     async readAllByField(fieldId : number) {
         return await this.prisma.measurement.findMany({
             where : {
-                fieldId
+                fieldId : Number(fieldId)
             }
         })
     }
@@ -53,7 +53,7 @@ export class MeasurementsService {
     async delete(measurementId) {
         return await this.prisma.measurement.delete({
             where : {
-                id : measurementId
+                id : Number(measurementId)
             }
         })
     }

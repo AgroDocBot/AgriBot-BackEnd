@@ -12,7 +12,7 @@ export class DiseasesController {
 
     @Get(':diseaseName')
     async getDisease(@Param('diseaseName') diseaseName : string) {
-        return this.diseaseService.getDisease(diseaseName);
+        return await this.diseaseService.getDisease(diseaseName);
     }
 
 }
