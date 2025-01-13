@@ -26,7 +26,7 @@ export class MeasurementsController {
     }
 
     @Put('edit')
-    async edit(@Body() body: {explored: number, duration: number}) {
-        return this.measurementsService.edit(body.explored, body.duration)
+    async edit(@Body() body: {measurementId: number, explored: number, duration: number}) {
+        return this.measurementsService.edit(body.measurementId,body.explored, body.duration)
     }
 }

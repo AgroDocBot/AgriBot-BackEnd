@@ -64,3 +64,28 @@ model DiseasedPlant {
   measurement Measurement @relation(fields: [measurementId], references: [id])
   measurementId Int
 }
+
+model Disease {
+  id             Int   @id @default(autoincrement())
+  diseaseName    String  @unique
+  affectedPlants DiseaseOnPlantType[]
+  affectedParts  String
+  description    String
+}
+
+model PlantType {
+  id          Int     @id   @default(autoincrement())
+  plantName   String  @unique
+  latinName   String  @unique
+  variety     String
+  diseases    DiseaseOnPlantType[]
+}
+
+model DiseaseOnPlantType {
+  plantType   PlantType   @relation(fields: [plantTypeId], references: [id])
+  plantTypeId Int   
+  disease     Disease     @relation(fields: [diseaseid], references: [id])
+  diseaseid   Int
+
+  @@id([plantTypeId, diseaseid])
+}
