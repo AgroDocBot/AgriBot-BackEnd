@@ -8,7 +8,7 @@ export class MeasurementsService {
     async create(fieldId : number) {
         return await this.prisma.measurement.create({
           data : {
-            fieldId : fieldId,
+            fieldId : Number(fieldId),
             duration: 0,
             explored: 0,
           }
