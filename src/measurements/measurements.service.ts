@@ -15,17 +15,28 @@ export class MeasurementsService {
         })
     }
     
-    async edit(duration: number, explored: number, measurementId: number) {
-        return await this.prisma.measurement.update({
-            where: {
-                id : Number(measurementId)
-            },
-            data : {
-                duration,
-                explored
-            }
-        })
-    }
+    async edit(measurementId: number, explored: number, duration: number) {
+        try {
+          console.log('Attempting to update measurement with ID:', measurementId);
+      
+          const updatedMeasurement = await this.prisma.measurement.update({
+            where: { id: measurementId },
+            data: { explored : Number(explored), duration : Number(explored) },
+          });
+      
+          console.log('Update successful:', updatedMeasurement);
+          return updatedMeasurement;
+        } catch (error) {
+          if (error.code === 'P2025') {
+            // Handle "Record not found" error
+            throw new Error(`Measurement with ID ${measurementId} not found.`);
+          } else {
+            // Handle other Prisma errors
+            console.error('Error updating measurement:', error);
+            throw error;
+          }
+        }
+      }
 
     async readAllByUser(username: string) {
         const user = await this.prisma.user.findFirst({
