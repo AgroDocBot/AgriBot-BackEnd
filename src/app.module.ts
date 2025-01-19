@@ -11,7 +11,7 @@ import { PlantsService } from './plants/plants.service';
 import { PlantsModule } from './plants/plants.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PleModule, PlantsModule],
+  imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule],
   controllers: [AppController, PlantsController],
   providers: [AppService, PlantsService],
 })
