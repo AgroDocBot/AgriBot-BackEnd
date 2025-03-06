@@ -22,7 +22,7 @@ export class FieldsController {
   }
 
   @Delete('delete')
-  async delete(@Body() body: { fieldname: string; userId: number }) {
-    return this.fieldsService.delete(body.fieldname, body.userId)
+  async delete(@Body() body: {id: number}) {
+    return this.fieldsService.delete(body.id)
   }
 }

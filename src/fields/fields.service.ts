@@ -33,13 +33,10 @@ export class FieldsService {
     })
   }
 
-  async delete(fieldname : string, userId : number) {
+  async delete(id: number) {
     return await this.prisma.cropField.delete({
       where : {
-        ownerId_fieldname : {
-          ownerId : Number(userId),
-          fieldname
-        }
+        id
       }
     })
   }
