@@ -19,13 +19,10 @@ export class FieldsService {
     })
   }
 
-  async edit(fieldname: string, crop: string, latitude: Decimal, longitude: Decimal, userId : number) {
+  async edit(id: number, fieldname: string, crop: string, latitude: Decimal, longitude: Decimal, userId : number) {
     return await this.prisma.cropField.update({
       where: {
-        ownerId_fieldname : {
-          ownerId : Number(userId),
-          fieldname : fieldname
-        }
+        id
       },
       data : {
         fieldname,

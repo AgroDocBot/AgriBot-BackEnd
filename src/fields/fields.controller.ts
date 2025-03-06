@@ -17,8 +17,8 @@ export class FieldsController {
   }
 
   @Put('edit')
-  async edit(@Body() body: { fieldname: string; crop: string; latitude: Decimal; longitude: Decimal; userId: number }) {
-    return await this.fieldsService.edit(body.fieldname, body.crop, body.latitude, body.longitude, body.userId)
+  async edit(@Body() body: { id: number, fieldname: string; crop: string; latitude: Decimal; longitude: Decimal; userId: number }) {
+    return await this.fieldsService.edit(body.id ,body.fieldname, body.crop, body.latitude, body.longitude, body.userId)
   }
 
   @Delete('delete')

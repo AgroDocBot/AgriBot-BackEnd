@@ -18,6 +18,7 @@ model User {
   username  String   @unique
   password  String
   createdAt DateTime @default(now())
+  robotData RobotData?
   fields    CropField[] 
 }
 
@@ -31,8 +32,6 @@ model CropField {
   author    User @relation(fields: [ownerId], references: [id])
   ownerId Int
   measurements Measurement[]
-
-  @@unique([ownerId, fieldname])
 }
 
 model Measurement {
@@ -88,4 +87,13 @@ model DiseaseOnPlantType {
   diseaseid   Int
 
   @@id([plantTypeId, diseaseid])
+}
+
+model RobotData {
+  id          Int         @id @default(autoincrement())
+  user        User        @relation(fields: [userId], references: [id])
+  userId      Int         @unique
+  timeUsed    Float       @default(0)
+  lastBattery Int         @default(100)
+  lastUsed    DateTime    @default(now())         
 }
