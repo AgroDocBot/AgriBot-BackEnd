@@ -9,9 +9,10 @@ import { DiseasesModule } from './diseases/diseases.module';
 import { PlantsController } from './plants/plants.controller';
 import { PlantsService } from './plants/plants.service';
 import { PlantsModule } from './plants/plants.module';
+import { MeasurementGateway } from './measurements/measurement.gateway';
 
 @Module({
-  imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule],
+  imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule, MeasurementGateway],
   controllers: [AppController, PlantsController],
   providers: [AppService, PlantsService],
 })
