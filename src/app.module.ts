@@ -12,8 +12,9 @@ import { PlantsModule } from './plants/plants.module';
 import { MeasurementGateway } from './measurements/measurement.gateway';
 
 @Module({
-  imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule, MeasurementGateway],
+  imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule],
   controllers: [AppController, PlantsController],
   providers: [AppService, PlantsService],
+  exports: [MeasurementGateway]
 })
 export class AppModule {}
