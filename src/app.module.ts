@@ -10,10 +10,11 @@ import { PlantsController } from './plants/plants.controller';
 import { PlantsService } from './plants/plants.service';
 import { PlantsModule } from './plants/plants.module';
 import { MeasurementGateway } from './measurements/measurement.gateway';
+import { MeasurementsService } from './measurements/measurements.service';
 
 @Module({
   imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule],
   controllers: [AppController, PlantsController],
-  providers: [AppService, PlantsService, MeasurementGateway],
+  providers: [AppService, PlantsService, MeasurementGateway, MeasurementsService],
 })
 export class AppModule {}
