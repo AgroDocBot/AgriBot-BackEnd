@@ -34,11 +34,16 @@ export class FieldsService {
   }
 
   async delete(id: number) {
-    return await this.prisma.cropField.delete({
-      where : {
-        id
-      }
-    })
+    return await this.prisma.$transaction([
+      this.prisma.measurement.deleteMany({
+        where: {
+          fieldId: id,
+        },
+      }),
+      this.prisma.cropField.delete({
+        where: { id },
+      }),
+    ]);
   }
 
   async getfield(userId : number) {
