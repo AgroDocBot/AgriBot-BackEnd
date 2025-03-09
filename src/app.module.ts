@@ -14,7 +14,6 @@ import { MeasurementGateway } from './measurements/measurement.gateway';
 @Module({
   imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule],
   controllers: [AppController, PlantsController],
-  providers: [AppService, PlantsService],
-  exports: [MeasurementGateway]
+  providers: [AppService, PlantsService, MeasurementGateway],
 })
 export class AppModule {}
