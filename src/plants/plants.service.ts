@@ -44,6 +44,24 @@ export class PlantsService {
     });
   }
 
+  async editHealthyPlant(id: number, imageUrl: string) {
+    return await this.prisma.healthyPlant.update({
+      where: { id },
+      data: {
+        imageUrl: imageUrl
+      }
+    })
+  }
+
+  async editDiseasedPlant(id: number, imageUrl: string) {
+    return await this.prisma.diseasedPlant.update({
+      where: { id },
+      data: {
+        imageUrl: imageUrl
+      }
+    })
+  }
+
   async deleteHealthyPlant(id: number) {
     return await this.prisma.healthyPlant.delete({
       where: { id },

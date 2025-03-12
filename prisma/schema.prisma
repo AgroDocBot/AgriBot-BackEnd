@@ -50,6 +50,7 @@ model HealthyPlant {
   latitude  Decimal   
   longitude Decimal
   crop      String
+  imageUrl  String?
   measurement  Measurement @relation(fields: [measurementId], references: [id])
   measurementId Int
 }
@@ -60,6 +61,7 @@ model DiseasedPlant {
   longitude Decimal
   crop      String
   disease   String
+  imageUrl  String?
   measurement Measurement @relation(fields: [measurementId], references: [id])
   measurementId Int
 }

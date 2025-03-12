@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Param, Body, Put } from '@nestjs/common';
 import { PlantsService } from './plants.service';
 
 @Controller('plants')
@@ -13,6 +13,16 @@ export class PlantsController {
   @Post('diseased/add')
   async addDiseasedPlant(@Body() body: { latitude: number; longitude: number; crop: string; disease: string; measurementId: number }) {
     return await this.plantService.addDiseasedPlant(body);
+  }
+
+  @Put('healthy/edit')
+  async editHealthyPlant(@Body() body: { id: number, imageUrl: string }) {
+    return await this.plantService.editHealthyPlant(body.id, body.imageUrl);
+  }
+
+  @Put('healthy/edit')
+  async editDiseasedPlant(@Body() body: { id: number, imageUrl: string }) {
+    return await this.plantService.editDiseasedPlant(body.id, body.imageUrl);
   }
 
   @Get('healthy/measurement/:measurementId')

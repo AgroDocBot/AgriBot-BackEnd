@@ -21,7 +21,7 @@ export class MeasurementsService {
       
           const updatedMeasurement = await this.prisma.measurement.update({
             where: { id: measurementId },
-            data: { explored : Number(explored), duration : Number(explored) },
+            data: { explored : Number(explored), duration : Number(duration) },
           });
       
           console.log('Update successful:', updatedMeasurement);
