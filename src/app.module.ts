@@ -12,9 +12,10 @@ import { PlantsModule } from './plants/plants.module';
 import { MeasurementGateway } from './measurements/measurement.gateway';
 import { MeasurementsService } from './measurements/measurements.service';
 import { ImagesModule } from './images/images.module';
+import { RobotDataModule } from './robot-data/robot-data.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule, ImagesModule],
+  imports: [PrismaModule, AuthModule, FieldsModule, MeasurementsModule, DiseasesModule, PlantsModule, ImagesModule, RobotDataModule],
   controllers: [AppController, PlantsController],
   providers: [AppService, PlantsService, MeasurementGateway, MeasurementsService],
 })
