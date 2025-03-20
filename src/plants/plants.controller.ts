@@ -20,7 +20,7 @@ export class PlantsController {
     return await this.plantService.editHealthyPlant(body.id, body.imageUrl);
   }
 
-  @Put('healthy/edit')
+  @Put('diseased/edit')
   async editDiseasedPlant(@Body() body: { id: number, imageUrl: string }) {
     return await this.plantService.editDiseasedPlant(body.id, body.imageUrl);
   }
