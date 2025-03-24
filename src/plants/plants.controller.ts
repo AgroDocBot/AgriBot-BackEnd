@@ -37,12 +37,12 @@ export class PlantsController {
 
   @Get('healthy/user/:userId')
   async getHealthyPlantsByUser(@Param('userId') userId: number) {
-    return await this.plantService.getHealthyPlants(Number(userId));
+    return await this.plantService.getHealthyPlantsByUser(Number(userId));
   }
 
   @Get('diseased/user/:userId')
   async getDiseasedPlantsByUser(@Param('userId') userId: number) {
-    return await this.plantService.getDiseasedPlants(Number(userId));
+    return await this.plantService.getDiseasedPlantsByUser(Number(userId));
   }
 
   @Delete('healthy/:id')
