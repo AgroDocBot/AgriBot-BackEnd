@@ -44,6 +44,30 @@ export class PlantsService {
     });
   }
 
+  async getHealthyPlantsByUser(userId : number) {
+    return await this.prisma.healthyPlant.findMany({
+        where: {
+          measurement: {
+            field: {
+              ownerId: userId
+            }
+          }
+        }
+    });
+  }
+
+  async getDiseasedPlantsByUser(userId : number) {
+    return await this.prisma.diseasedPlant.findMany({
+        where: {
+          measurement: {
+            field: {
+              ownerId: userId
+            }
+          }
+        }
+    });
+  }
+
   async editHealthyPlant(id: number, imageUrl: string) {
     return await this.prisma.healthyPlant.update({
       where: { id },
