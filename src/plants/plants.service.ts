@@ -68,6 +68,25 @@ export class PlantsService {
     });
   }
 
+  async getHealthyPlantsByField(fieldId : number) {
+    return await this.prisma.healthyPlant.findMany({
+        where: {
+          measurement: {
+            fieldId
+          }
+        }
+    });
+  }
+
+  async getDiseasedPlantsByField(fieldId : number) {
+    return await this.prisma.diseasedPlant.findMany({
+        where: {
+          measurement: {
+            fieldId
+          }
+        }
+    });
+  }
   async editHealthyPlant(id: number, imageUrl: string) {
     return await this.prisma.healthyPlant.update({
       where: { id },
