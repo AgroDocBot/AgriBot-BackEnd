@@ -26,6 +26,7 @@ model CropField {
   id        Int      @id @default(autoincrement())
   fieldname String
   crop      String
+  area      Decimal?
   latitude  Decimal   
   longitude Decimal
   createdAt DateTime @default(now())
@@ -69,6 +70,7 @@ model DiseasedPlant {
 model Disease {
   id             Int   @id @default(autoincrement())
   diseaseName    String  @unique
+  imageUrl       String?
   affectedPlants DiseaseOnPlantType[]
   affectedParts  String
   description    String

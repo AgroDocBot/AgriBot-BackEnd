@@ -7,11 +7,12 @@ import { PrismaService } from '../prisma/prisma.service';
 export class FieldsService {
   constructor(private prisma: PrismaService) {}
 
-  async create(fieldname: string, crop: string, latitude: Decimal, longitude: Decimal, userId: number) {
+  async create(fieldname: string, crop: string, area: Decimal, latitude: Decimal, longitude: Decimal, userId: number) {
     return await this.prisma.cropField.create({
       data : {
         fieldname : fieldname,
         crop : crop,
+        area: area,
         latitude : latitude,
         longitude : longitude,
         ownerId : Number(userId)
@@ -19,7 +20,7 @@ export class FieldsService {
     })
   }
 
-  async edit(id: number, fieldname: string, crop: string, latitude: Decimal, longitude: Decimal, userId : number) {
+  async edit(id: number, fieldname: string, crop: string, area: Decimal, latitude: Decimal, longitude: Decimal, userId : number) {
     return await this.prisma.cropField.update({
       where: {
         id
@@ -27,6 +28,7 @@ export class FieldsService {
       data : {
         fieldname,
         crop,
+        area,
         latitude,
         longitude
       }
