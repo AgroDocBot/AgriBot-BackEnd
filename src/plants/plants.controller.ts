@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Delete, Param, Body, Put } from '@nestjs/common';
+import { PlantUploadDto } from 'src/dto/PlantUploadDto.dto';
 import { PlantsService } from './plants.service';
 
 @Controller('plants')
@@ -63,5 +64,10 @@ export class PlantsController {
   @Delete('diseased/:id')
   async deleteDiseasedPlant(@Param('id') id: number) {
     return await this.plantService.deleteDiseasedPlant(Number(id));
+  }
+
+  @Post('bulk')
+  async bulkUpload(@Body() body: PlantUploadDto) {
+    return this.plantService.bulkUpload(body.measurementId, body.plants);
   }
 }

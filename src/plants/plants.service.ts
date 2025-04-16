@@ -116,4 +116,48 @@ export class PlantsService {
       where: { id },
     });
   }
+
+  async bulkUpload(measurementId: number, plants: any[]) {
+    const healthyPlants = [];
+    const diseasedPlants = [];
+
+    for (const plant of plants) {
+      const baseData = {
+        latitude: plant.latitude,
+        longitude: plant.longitude,
+        crop: plant.crop,
+        measurementId: measurementId,
+      };
+
+      if (plant.result.toLowerCase().includes('healthy')) {
+        healthyPlants.push(baseData);
+      } else {
+        diseasedPlants.push({ ...baseData, disease: plant.result });
+      }
+    }
+
+    const result = {
+      createdHealthy: 0,
+      createdDiseased: 0,
+    };
+
+    if (healthyPlants.length > 0) {
+      const insertHealthy = await this.prisma.healthyPlant.createMany({
+        data: healthyPlants,
+      });
+      result.createdHealthy = insertHealthy.count;
+    }
+
+    if (diseasedPlants.length > 0) {
+      const insertDiseased = await this.prisma.diseasedPlant.createMany({
+        data: diseasedPlants,
+      });
+      result.createdDiseased = insertDiseased.count;
+    }
+
+    return {
+      message: 'Bulk insert complete',
+      ...result,
+    };
+  }
 }
